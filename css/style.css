@@ -93,9 +93,38 @@ body {
 .gnb {
   display: flex;
   height: 100%;
+  /* 세로 중앙 정렬 */
   align-items: center;
 }
-.gnb li {
+/* .gnb > li : 만약에 서브 메뉴가 있다면 */
+.gnb > li {
+}
+.gnb > li > a {
+  display: block;
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+  /* 왜 padding을 쓰는가? a 태그 영역 확대 */
+  padding: 40px 38px;
+}
+.gnb > li > a > span {
+  position: relative;
+  display: block;
+  padding-bottom: 7px;
+}
+.gnb > li > a > span::after {
+  content: "";
+  position: relative;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.5s;
+}
+.gnb > li > a:hover > span::after {
+  width: 100%;
 }
 /* 스크롤시 css 적용 */
 .header.active {
