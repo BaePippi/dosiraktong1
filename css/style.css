@@ -418,8 +418,10 @@ html.active {
   display: block;
   width: 80px;
   height: 27px;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.3);
   padding: 0 10px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 .swvisual-list li::before {
   content: "";
@@ -438,10 +440,14 @@ html.active {
   width: 0%;
   height: 2px;
   background: rgba(255, 255, 255, 1);
-  transition: width 1s;
+}
+
+.swvisual-list li.active {
+  color: rgba(255, 255, 255, 1);
 }
 .swvisual-list li.active::after {
   width: 100%;
+  transition: width 2.5s;
 }
 
 /* 서비스 */

@@ -125,19 +125,20 @@ window.onload = function(){
         // 데이터를 외부 변수에 저장한다.
         visualData = data.visual; 
 
-        // li 태그를 만든다.
-        // 만들어진 글자를 모아서 swUI 태그 안쪽에 innHtml한다.
+        // 데이터 로딩후 데이터 개수 만큼 li 태그를 만든다.
+        // 만들어진 글자를 모아서 swUl 태그 안쪽에 innerHtml 한다.
         let html = "";
         let count = 1;
-        visualData.forEach((item) => {
-            html += `<li>${count++}</li>`
+        visualData.forEach( (item) => {
+            html += `<li>${count++}</li>`;
         });
-        swUl.innerHTML = html;
+        swUl.innerHTML = html; 
         // 자바스크립트가 li를 참조하도록 적용
         swList = document.querySelectorAll(".swvisual-list li");
-        
+        // li 태그를 클릭해서 슬라이드 이동하기
+        swListShow();
 
-        showVT(visualData[0], 0);
+        // showVT(visualData[0], 0);
     })
     .catch( (err) => {
         console.log(err)
@@ -179,6 +180,18 @@ window.onload = function(){
             }
         });
     }
+    // li 를 클릭시 슬라이드 변경함수
+    function swListShow() {
+        swList.forEach( (item, index) => {
+            // 클릭시 슬라이드 변경
+            item.addEventListener("click", function(){
+                // swVisual 슬라이드를 변경 (API 참조)
+                // swVisual.slideTo()
+                // swVisual.slideToLoop(번호, 속도, 효과)
+                swVisual.slideToLoop(index, 500, false)
+            });
+        })
+    }
 
     // 비주얼 슬라이드
     let swVisual = new Swiper(".swvisual", {
@@ -194,6 +207,7 @@ window.onload = function(){
             nextEl:".swvisual-next"
         }
     });
+
     // swVisual 슬라이드가 변경될 때마다 하고 싶은 일 진행
     swVisual.on("slideChange", function(){
         console.log("진짜 html 태그의 순서", swVisual.realIndex);
