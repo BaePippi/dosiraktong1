@@ -1,6 +1,6 @@
 @charset "utf-8";
-/* 절대로 위의 줄을 1번줄에 배치 */
-/*  글꼴 import 진행 */
+/* 절대로 위의 줄은 1번줄에 배치 */
+/* 글꼴 import 진행 */
 @import url("./font/font.css");
 
 * {
@@ -28,28 +28,31 @@ body {
   color: #222;
   font-size: 16px;
   line-height: 1;
-  /* px 안써주면 *한 값임 */
   letter-spacing: 0;
   word-break: keep-all;
-
-  height: 5000px;
 }
-/* 공통요소 */
+html.active {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* 공통요소 : 2번이상 재활용 코드 */
 .inner {
   position: relative;
   display: block;
-  /* 반응형이므로 max 권장 */
+  /* 반응형이므로 */
   max-width: 1420px;
   width: 100%;
   /* block 요소 가운데 정렬 */
   margin: 0 auto;
 }
+
 /* 레이아웃 */
 .wrap {
   position: relative;
   display: block;
 }
-/* 헤더 */
+/* 상단 */
 .header {
   /* 메뉴가 상단에 고정해서 스크롤이 된다면 fixed */
   position: fixed;
@@ -58,28 +61,31 @@ body {
   display: block;
   width: 100%;
   height: 100px;
-  /* header 는 무조건 z-index 쓰자. 최대값으로 쓰자. */
+  /* header 는 무조건 z-index 쓰자! 최대값으로 쓰자. */
   z-index: 9999;
   background: rgba(255, 255, 255, 0);
   transition: height 0.5s, background 0.5s;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+
 .header .inner {
   max-width: 100%;
   height: 100%;
-  
   z-index: 9;
 }
-/*  left, top, right, bottom 사용시 반드시 position: absolute 쓰자 
-    즉, position:relative 쓰지말자
+/* 
+    left, top, right, bottom 사용시
+    반드시 position:absolute 쓰자.
+    즉, position: relative 에 쓰지말자
 */
+
 .logo {
   position: absolute;
   top: 35px;
   left: 60px;
-  /*
-        a, span 등등은 기본 display:inline
-        너비, 높이, margin, padding 설정못함
+  /* 
+        a, span 등등은 기본 display:inline  
+        너비, 높이, margin, padding 설정 못함
         그래서 최소 inline-block 이라고 해야 한다.
     */
   display: inline-block;
@@ -89,27 +95,33 @@ body {
   background-size: cover;
   transition: top 0.5s, background 0.5s;
 }
+
+.header.active .nav {
+  height: 80px;
+}
 .nav {
   position: absolute;
   right: 0;
   top: 0;
   height: 100%;
 }
+
 .gnb {
   display: flex;
   height: 100%;
   /* 세로 중앙 정렬 */
   align-items: center;
 }
-/* .gnb > li : 만약에 서브 메뉴가 있다면 */
+/* .gnb > li : 주의사항 만약에 서브 메뉴가 있다면 */
 .gnb > li {
 }
 .gnb > li > a {
   display: block;
   font-size: 17px;
+  /* font-weight: 400 */
   font-weight: 500;
   color: #fff;
-  /* 왜 padding을 쓰는가? a 태그 영역 확대 */
+  /* 왜 padding 을 쓰는가? a 태그 영역확대*/
   padding: 40px 38px;
 }
 .gnb > li > a > span {
@@ -119,7 +131,7 @@ body {
 }
 .gnb > li > a > span::after {
   content: "";
-  position: relative;
+  position: absolute;
   left: 0;
   bottom: 0;
   display: block;
@@ -131,15 +143,19 @@ body {
 .gnb > li > a:hover > span::after {
   width: 100%;
 }
+
 /* 
-  javaScript 에서는 display:none이면
-  선택이 안될 때가 있다.
-  opacity:0은 배제합니다. 작동이 됨
+    javaScript 에서는 
+    display:none 선택이 안될 때가 있어요. 
+    querySelector(".mb-bt");
+    opacity: 0 는 배제합니다. 작동이 되요.   
+    
 */
 .mb-bt {
   position: absolute;
   right: -20000px;
   top: 24px;
+
   width: 30px;
   height: 22px;
   background: transparent;
@@ -152,8 +168,9 @@ body {
   display: block;
   width: 100%;
   height: 2px;
-  background: #222;
+  background: #fff;
 }
+
 .mb-bt span:nth-child(1) {
   top: 0;
   transition: transform 0.3s;
@@ -166,9 +183,13 @@ body {
   bottom: 0;
   transition: transform 0.3s;
 }
+
 /* 모바일 메뉴 */
 .mb-nav {
-  /* 만약 relative라면 다른 영역에 영향을 준다 */
+  /* 
+        만약 relative 라면 다른 영역에 영향을 준다. 
+        margin, padding, width, height...
+    */
   position: absolute;
   left: 100%;
   top: 0;
@@ -178,6 +199,7 @@ body {
   padding-top: 90px;
   transition: left 0.3s ease-in-out;
 }
+
 .mb-nav-gnb {
 }
 .mb-nav-gnb > li {
@@ -186,8 +208,9 @@ body {
 .mb-nav-gnb > li > a {
   display: block;
   padding: 20px 70px 20px 40px;
-    font-size: 24px;
+  font-size: 24px;
 }
+
 /* 스크롤시 css 적용 */
 .header.active {
   height: 80px;
@@ -204,8 +227,11 @@ body {
 }
 .gnb > li > a.active {
   color: #222;
-} 
+}
 /* 모바일 버튼 애니메이션 */
+.mb-bt span.active {
+  background: #222;
+}
 .mb-bt.active span:nth-child(1) {
   transform: rotate(45deg);
   top: calc(50% - 1px);
@@ -221,8 +247,9 @@ body {
 .mb-nav.active {
   left: 0;
 }
-/* 숫자가 증가하는 형태는 모바일 작업 > 타블렛 > 데스크탑 */
-/* 숫자가 감소하는 형태는 데스크탑 작업 > 타블렛 > 모바일 */
+
+/* 1. 숫자가 증가하는 형태는 모바일 작업 > 타블렛 > 데스크 */
+/* 2. 숫자가 감소하는 형태는 데스크탑 작업 > 타블렛 > 모바일 */
 @media screen and (max-width: 1280px) {
   .header {
     height: 90px;
@@ -253,16 +280,25 @@ body {
     right: 20px;
   }
 }
-@media screen and (max-width: 480px) {
-}
+
 /* 비주얼 */
 .visual {
   position: relative;
   display: block;
   width: 100%;
   height: 100vh;
-  background: url("../images/main_visual_1.jpg") no-repeat center;
-  background-size: cover;
+}
+.swvisual {
+}
+.visual-img {
+}
+.bg-1 {
+}
+.bg-2 {
+}
+.bg-3 {
+}
+.bg-4 {
 }
 /* 서비스 */
 .service {
@@ -279,7 +315,7 @@ body {
   position: relative;
   display: block;
 }
-/* 푸터 */
+/* 하단 */
 .footer {
   position: relative;
   display: block;
