@@ -1,5 +1,8 @@
 // 이미지 및 리소스 로드 후 코드실행
 window.onload = function(){
+    
+    // AOS셋팅
+    AOS.init();
 
     let htmlTag = document.querySelector("html");
     // 모바일 메뉴 버튼 처리
@@ -126,7 +129,7 @@ window.onload = function(){
         visualData = data.visual; 
 
         // 데이터 로딩후 데이터 개수 만큼 li 태그를 만든다.
-        // 만들어진 글자를 모아서 swUl 태그 안쪽에 innerHtml 한다.
+        // 만들어진 글자를 모아서 swUl 태그 안쪽에 innrHtml 한다.
         let html = "";
         let count = 1;
         visualData.forEach( (item) => {
@@ -138,7 +141,7 @@ window.onload = function(){
         // li 태그를 클릭해서 슬라이드 이동하기
         swListShow();
 
-        // showVT(visualData[0], 0);
+        showVT(visualData[0], 0);
     })
     .catch( (err) => {
         console.log(err)
@@ -157,7 +160,7 @@ window.onload = function(){
 
     // 타이틀 내용 보여주기
     function showVT(_data, _idx) {
-        console.log(_data);
+        // console.log(_data);
         swTitle.innerHTML = _data.title;
         swTxt.innerHTML = _data.txt;
         if(_data.link === "no") {
@@ -210,10 +213,32 @@ window.onload = function(){
 
     // swVisual 슬라이드가 변경될 때마다 하고 싶은 일 진행
     swVisual.on("slideChange", function(){
-        console.log("진짜 html 태그의 순서", swVisual.realIndex);
-        console.log("모션이 되는 순서", swVisual.activeIndex);
+        // console.log("진짜 html 태그의 순서", swVisual.realIndex);
+        // console.log("모션이 되는 순서", swVisual.activeIndex);
         // 텍스트를 수정한다.
         showVT(visualData[swVisual.realIndex], swVisual.realIndex);
     });
+
+    // 카테고리 슬라이드 
+    new Swiper(".swcategory", {       
+        loop: true,
+        slidesPerView: 1,
+        breakpoints: {
+            480: {      
+                slidesPerView: 2,
+                spaceBetween: 0,
+            },
+            1024: {      
+                slidesPerView: 3,
+                spaceBetween: 0,
+            }
+        },
+    });
+    
+    // 안내창 기능
+    let categoryPop = document.querySelector(".category-pop");
+    categoryPop.addEventListener("click", function(){
+        categoryPop.classList.add("active");
+    })
 
 }
