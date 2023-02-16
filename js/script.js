@@ -9,7 +9,11 @@ window.onload = function () {
   new Waypoint({
     element: visual,
     handler: function (dir) {
-      console.log(dir);
+      if(dir === "down") {
+        goTop.classList.add("active")
+      }else{
+
+      }
     },
     offset: "100%",
   });
