@@ -38,21 +38,32 @@ html.active {
 /* 위로가기 */
 .gotop {
   position: fixed;
-  right: 50px;
-  bottom: 100px;
-  width: 100px;
-  height: 100px;
+  right: 60px;
+  bottom: 60px;
+  width: 60px;
+  height: 60px;
   z-index: 9999;
   border: 0;
-  background: blue;
+  border-radius: 5px;
+  background: #3056a1;
   cursor: pointer;
   opacity: 0;
   transition: all 0.5s;
 }
+.topIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 28px;
+    color: #fff;
+    text-indent: 0;
+    transform: translate(-50%, -50%);
+}
 .gotop.active {
   opacity: 1;
-  background: red;
+  background: #3056a1;
 }
+
 
 /* 공통요소 : 2번이상 재활용 코드 */
 .inner {

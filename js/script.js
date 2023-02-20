@@ -9,19 +9,32 @@ window.onload = function(){
 
     //  스크롤의 위치에 따른 div 비교대상
     let visual = document.querySelector(".service");
-    
+    let footer = document.querySelector(".footer");
+
     new Waypoint({
-        element: visual,
-        handler: function (dir) {
-            // dir 의 값에 따라 처리
-            if(dir === "down") {
-                goTop.classList.add("active");
-            }else {
-                goTop.classList.remove("active");
-            }
-        },
-        // 해당 div 의 화면상에 얼마나 보이는가?
-        offset: "50%"
+      element: visual,
+      handler: function (dir) {
+        // dir 의 값에 따라 처리
+        if (dir === "down") {
+          goTop.classList.add("active");
+        } else {
+          goTop.classList.remove("active");
+        }
+      },
+      // 해당 div 의 화면상에 얼마나 보이는가?
+      offset: "50%",
+
+      element: visual,
+      handler: function (dir) {
+        // dir 의 값에 따라 처리
+        if (dir === "down") {
+          goTop.classList.add("active");
+        } else {
+          goTop.classList.remove("active");
+        }
+      },
+      // 해당 div 의 화면상에 얼마나 보이는가?
+      offset: "50%",
     });
 
 
