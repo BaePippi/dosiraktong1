@@ -51,19 +51,22 @@ html.active {
   transition: all 0.5s;
 }
 .topIcon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 28px;
-    color: #fff;
-    text-indent: 0;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 28px;
+  color: #fff;
+  text-indent: 0;
+  transform: translate(-50%, -50%);
 }
 .gotop.active {
   opacity: 1;
   background: #3056a1;
 }
 
+.footer-bottom {
+  bottom: 210px;
+}
 
 /* 공통요소 : 2번이상 재활용 코드 */
 .inner {
@@ -245,6 +248,7 @@ html.active {
 .header.active {
   height: 80px;
   background: rgba(255, 255, 255, 1);
+  box-shadow: 10px 0 15px 0 rgb(0 0 0 / 10%);
 }
 .logo.active {
   top: 25px;
@@ -510,12 +514,15 @@ html.active {
 }
 .service h2 {
   text-align: center;
-  /* 글자 셋팅 */
+  font-size: 38px;
+  margin-bottom: 30px;
 }
 .service h2 span {
-  /* 글자색만 수정 */
+  font-family: "Godo", "notokr";
+  color: #3a68b2;
 }
 .service-contents {
+  position: relative;
   display: flex;
   justify-content: space-between;
   height: 680px;
@@ -523,6 +530,25 @@ html.active {
 .service-left {
   width: calc(50% - 10px);
   height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.service-left-textWrap, .service-right-top-textWrap, .service-right-bottom-textWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 60px;
+  color: #fff;
+}
+.service-left-textWrap div, .service-right-top-textWrap div, .service-right-bottom-textWrap div {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 3px;
 }
 .service-right {
   display: flex;
@@ -530,47 +556,71 @@ html.active {
   align-content: space-between;
   width: calc(50% - 10px);
   height: 100%;
+  overflow: hidden;
+}
+.service-right-top {
+  position: relative;
+  width: 100%;
+  height: calc(50% - 10px);
+  overflow: hidden;
+}
+.service-right-bottom {
+  width: 100%;
+  height: calc(50% - 10px);
+  overflow: hidden;
+  position: relative;
 }
 .service-link-1 {
   display: block;
   width: 100%;
   height: 100%;
-  background: url("../images/main_service_img1.jpg") no-repeat center;
-  background-size: cover;
+  /* background: url("../images/main_service_img1.jpg") no-repeat center;
+  background-size: cover; */
 }
 .service-link-2 {
   display: block;
   width: 100%;
-  height: calc(50% - 10px);
-  background: url("../images/main_service_img2.jpg") no-repeat center;
-  background-size: cover;
+  height: 100%;
+  /* background: url("../images/main_service_img2.jpg") no-repeat center;
+  background-size: cover; */
 }
 .service-link-3 {
   display: block;
   width: 100%;
-  height: calc(50% - 10px);
-  background: url("../images/main_service_img3.jpg") no-repeat center;
-  background-size: cover;
+  height: 100%;
+  /* background: url("../images/main_service_img3.jpg") no-repeat center;
+  background-size: cover; */
 }
 @media screen and (max-width: 1460px) {
   .service-contents {
     /* 
-      왜 1920px 이 아니고       
-      1460 이 되냐면??????      
-      1560px 일때 680 px 부터 ****
+    왜 1920px 이 아니고       
+    1460 이 되냐면??????      
+    1560px 일때 680 px 부터 ****
       1510px 일때 680 px 부터 ****
       1500px 일때 680 px 부터 ****
       1460px 일때 680 px 부터 ****
       높이가 줄어들기 때문입니다.
-
+      
       (1460px / 680px) * 100 = 46.57vw
-    */
+      */
     height: 46.57vw;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .service-left:hover .service-link-1,
+  .service-right-top:hover .service-link-2,
+  .service-right-bottom:hover .service-link-3 {
+    transform: rotate(1deg) scale(1.1);
+    opacity: 0.8;
   }
 }
 @media screen and (max-width: 1024px) {
   .service {
     height: auto;
+  }
+  .service .inner {
+    padding: 100px 0;
   }
 
   .service-contents {
@@ -607,6 +657,8 @@ html.active {
     /* 1024px : 310px = 30vw */
     height: 30vw;
     margin-bottom: 20px;
+    margin: 0 auto;
+    margin-bottom: 20px;
   }
   .service-link-3 {
     max-width: 660px;
@@ -615,6 +667,7 @@ html.active {
 
     /* 1024px : 310px = 30vw */
     height: 30vw;
+    margin: 0 auto;
   }
 }
 @media screen and (max-width: 640px) {
@@ -644,18 +697,55 @@ html.active {
   justify-content: space-between;
   height: 430px;
   width: 100%;
-  background: skyblue;
 }
 
 .info-left {
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1.35;
   width: calc(50% - 10px);
   height: 100%;
-  background: yellow;
+}
+.info-left span {
+  font-family: "Godo", "notokr";
+  color: #3a68b2;
 }
 .info-right {
   width: calc(50% - 10px);
   height: 100%;
-  background: green;
+}
+.info-right-title {
+  margin-bottom: 45px;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 40px;
+}
+.info-right-title span {
+  font-weight: 700;
+  color: #3a68b2;
+}
+.info-right-content p:first-child {
+  margin-bottom: 25px;
+}
+.info-right-content a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 140px;
+  height: 50px;
+  padding: 0 10px;
+  margin-top: 90px;
+  font-size: 15px;
+  font-weight: 600;
+  border-bottom: 2px solid #222;
+  transition: padding 0.3s;
+}
+.info-right-content a:hover {
+  padding-right: 5px;
+}
+.aboutIcon {
+  font-size: 18px;
 }
 /* info 반응형 */
 @media screen and (max-width: 1280px) {
@@ -664,6 +754,10 @@ html.active {
   }
 }
 @media screen and (max-width: 1024px) {
+  .info .inner {
+    padding: 0;
+    text-align: center;
+  }
   .info-contents {
     justify-content: center;
     flex-wrap: wrap;
@@ -671,12 +765,17 @@ html.active {
   .info-left {
     width: 100%;
     height: auto;
-    padding: 50px 0;
   }
   .info-right {
     width: 100%;
     height: auto;
     padding: 50px 0;
+  }
+  .info-right-title {
+    font-size: 24px;
+  }
+  .info-left {
+    font-size: 34px;
   }
 }
 /* 서비스 카테고리 */

@@ -16,6 +16,7 @@ window.onload = function(){
       handler: function (dir) {
         // dir 의 값에 따라 처리
         if (dir === "down") {
+            console.log(dir)
           goTop.classList.add("active");
         } else {
           goTop.classList.remove("active");
@@ -23,18 +24,19 @@ window.onload = function(){
       },
       // 해당 div 의 화면상에 얼마나 보이는가?
       offset: "50%",
-
-      element: visual,
+    });
+    new Waypoint({
+      element: footer,
       handler: function (dir) {
         // dir 의 값에 따라 처리
         if (dir === "down") {
-          goTop.classList.add("active");
+          goTop.classList.add("footer-bottom");
         } else {
-          goTop.classList.remove("active");
+          goTop.classList.remove("footer-bottom");
         }
       },
-      // 해당 div 의 화면상에 얼마나 보이는가?
-      offset: "50%",
+
+      offset: "100%",
     });
 
 
