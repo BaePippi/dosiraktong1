@@ -441,7 +441,7 @@ html.active {
   align-items: center;
   width: 100%;
   height: 100%;
-  border: 1px solid #fff;
+  border: 2px solid rgba(255,255,255,.6);
   color: #fff;
 }
 .swvisual-link.active a {
@@ -493,19 +493,44 @@ html.active {
 
 /* 비주얼 반응형 */
 @media screen and (max-width: 1280px) {
-  /* 비주얼 안쪽의 내용 부분 사이즈 조절 */
+  .swvisual-prev,.swvisual-next {
+    width: 50px;
+    height: 50px;
+  }
+  .swvisual-title {
+    font-size: 50px;
+  }
+  .swvisual-txt {
+    font-size: 20px;
+  }
+  .swvisual-link{
+    width: 180px;
+    height: 55px;
+    padding: 0;
+    margin-top: 30px;
+    font-size: 16px;
+  }
 }
 @media screen and (max-width: 1024px) {
   .visual {
-    /* 100vw : 1920px */
-    /* 48.95vw : 940px */
     min-height: 800px;
     height: 48.95vw;
   }
-  /* 비주얼 안쪽의 내용 부분 사이즈 조절 */
+  .swvisual-title {
+    font-size: 42px;
+  }
+  .swvisual-txt {
+    font-size: 17px;
+  }
 }
-@media screen and (max-width: 60px) {
-  /* 비주얼 안쪽의 내용 부분 사이즈 조절 */
+@media screen and (max-width: 640px) {
+  .swvisual-prev,.swvisual-next {
+    width: 40px;
+    height: 40px;
+  }
+  .swvisual-title {
+    font-size: 36px;
+  }
 }
 
 /* 서비스 */
@@ -596,36 +621,19 @@ html.active {
   display: block;
   width: 100%;
   height: 100%;
-  /* background: url("../images/main_service_img1.jpg") no-repeat center;
-  background-size: cover; */
 }
 .service-link-2 {
   display: block;
   width: 100%;
   height: 100%;
-  /* background: url("../images/main_service_img2.jpg") no-repeat center;
-  background-size: cover; */
 }
 .service-link-3 {
   display: block;
   width: 100%;
   height: 100%;
-  /* background: url("../images/main_service_img3.jpg") no-repeat center;
-  background-size: cover; */
 }
 @media screen and (max-width: 1460px) {
   .service-contents {
-    /* 
-    왜 1920px 이 아니고       
-    1460 이 되냐면??????      
-    1560px 일때 680 px 부터 ****
-      1510px 일때 680 px 부터 ****
-      1500px 일때 680 px 부터 ****
-      1460px 일때 680 px 부터 ****
-      높이가 줄어들기 때문입니다.
-      
-      (1460px / 680px) * 100 = 46.57vw
-      */
     height: 46.57vw;
   }
 }
@@ -660,15 +668,11 @@ html.active {
   .service-left {
     max-width: 660px;
     width: 100%;
-    /* width: 64.45vw;
-    height: 62.5vw; */
     margin: 0 auto;
     margin-bottom: 20px;
   }
   .service-left-textWrap {
     max-width: 660px;
-    /* width: 64.45vw;
-    height: 62.5vw; */
     width: 100%;
     margin: 0 auto;
   }
@@ -680,8 +684,6 @@ html.active {
   }
   .service-right {
     max-width: 660px;
-    /* width: 64.45vw;
-    height: 62.5vw; */
     width: 100%;
     margin: 0 auto;
     justify-content: center;
@@ -692,35 +694,18 @@ html.active {
 
   .service-link-1 {
     max-width: 660px;
-
-    /* 1024px : 660px = 64.45vw */
-    /* width: 64.45vw; */
     width: 100%;
-
-    /* 1024px : 640px = 64.45vw */
-    /* height: 62.5vw; */
-
-    /* flex 를 적용안했으므로 */
     margin: 0 auto;
   }
   .service-link-2 {
     max-width: 660px;
-    /* 1024px : 660px = 64.45vw */
-    /* width: 64.45vw; */
     width: 100%;
 
-    /* 1024px : 310px = 30vw */
-    /* height: 30vw; */
     margin: 0 auto;
   }
   .service-link-3 {
     max-width: 660px;
     width: 100%;
-    /* 1024px : 660px = 64.45vw */
-    /* width: 64.45vw; */
-
-    /* 1024px : 310px = 30vw */
-    /* height: 30vw; */
     margin: 0 auto;
   }
 }
@@ -742,11 +727,9 @@ html.active {
   }
   .service-link-2 {
     width: 100%;
-    /* height: 275px; */
   }
   .service-link-3 {
     width: 100%;
-    /* height: 275px; */
   }
   .service-left-textWrap,
   .service-right-top-textWrap,
@@ -828,7 +811,7 @@ html.active {
 }
 @media screen and (max-width: 1024px) {
   .info .inner {
-    padding: 0;
+    padding: 0 20px;
     text-align: center;
   }
   .info-contents {
@@ -950,7 +933,7 @@ html.active {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 99;
 }
 .category-pop.active {
@@ -1037,9 +1020,4 @@ html.active {
   font-size: 14px;
   color: #444444;
   margin-top: 50px;
-}
-@media screen and (max-width: 920px) {
-  /* .footer .inner {
-    padding: 0;
-  } */
 }
