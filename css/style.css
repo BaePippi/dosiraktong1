@@ -63,6 +63,12 @@ html.active {
   opacity: 1;
   background: #3056a1;
 }
+@media screen and (max-width: 640px) {
+  .gotop {
+    right: 20px;
+    bottom: 20px;
+  }
+}
 
 .footer-bottom {
   bottom: 210px;
@@ -533,7 +539,9 @@ html.active {
   overflow: hidden;
   position: relative;
 }
-.service-left-textWrap, .service-right-top-textWrap, .service-right-bottom-textWrap {
+.service-left-textWrap,
+.service-right-top-textWrap,
+.service-right-bottom-textWrap {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -544,11 +552,37 @@ html.active {
   height: 100%;
   padding: 60px;
   color: #fff;
+  line-height: 1.35;
 }
-.service-left-textWrap div, .service-right-top-textWrap div, .service-right-bottom-textWrap div {
+.serviceName {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 3px;
+}
+.serviceInfo {
+  font-size: 17px;
+  font-weight: 300;
+  opacity: 0.8;
+}
+.service-right-top,
+.service-right-bottom {
+  position: relative;
+  width: 100%;
+  height: calc(50% - 10px);
+  overflow: hidden;
+}
+.serviceMore {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 140px;
+  height: 40px;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 15px;
+  color: #fff;
+  transition: color 0.3s, background-color 0.3s;
 }
 .service-right {
   display: flex;
@@ -557,18 +591,6 @@ html.active {
   width: calc(50% - 10px);
   height: 100%;
   overflow: hidden;
-}
-.service-right-top {
-  position: relative;
-  width: 100%;
-  height: calc(50% - 10px);
-  overflow: hidden;
-}
-.service-right-bottom {
-  width: 100%;
-  height: calc(50% - 10px);
-  overflow: hidden;
-  position: relative;
 }
 .service-link-1 {
   display: block;
@@ -607,6 +629,13 @@ html.active {
     height: 46.57vw;
   }
 }
+@media screen and (max-width: 1280px) {
+  .service-left-textWrap,
+  .service-right-top-textWrap,
+  .service-right-bottom-textWrap {
+    padding: 30px;
+  }
+}
 @media screen and (min-width: 1025px) {
   .service-left:hover .service-link-1,
   .service-right-top:hover .service-link-2,
@@ -620,31 +649,56 @@ html.active {
     height: auto;
   }
   .service .inner {
-    padding: 100px 0;
+    padding: 70px 0 50px;
   }
 
   .service-contents {
     flex-wrap: wrap;
     height: auto;
+    padding: 15px;
   }
   .service-left {
+    max-width: 660px;
     width: 100%;
+    /* width: 64.45vw;
+    height: 62.5vw; */
+    margin: 0 auto;
     margin-bottom: 20px;
   }
-
-  .service-right {
+  .service-left-textWrap {
+    max-width: 660px;
+    /* width: 64.45vw;
+    height: 62.5vw; */
     width: 100%;
+    margin: 0 auto;
+  }
+  .serviceName {
+    font-size: 22px;
+  }
+  .serviceInfo {
+    font-size: 16px;
+  }
+  .service-right {
+    max-width: 660px;
+    /* width: 64.45vw;
+    height: 62.5vw; */
+    width: 100%;
+    margin: 0 auto;
     justify-content: center;
+  }
+  .service-right-top {
+    margin-bottom: 20px;
   }
 
   .service-link-1 {
     max-width: 660px;
 
     /* 1024px : 660px = 64.45vw */
-    width: 64.45vw;
+    /* width: 64.45vw; */
+    width: 100%;
 
     /* 1024px : 640px = 64.45vw */
-    height: 62.5vw;
+    /* height: 62.5vw; */
 
     /* flex 를 적용안했으므로 */
     margin: 0 auto;
@@ -652,36 +706,55 @@ html.active {
   .service-link-2 {
     max-width: 660px;
     /* 1024px : 660px = 64.45vw */
-    width: 64.45vw;
+    /* width: 64.45vw; */
+    width: 100%;
 
     /* 1024px : 310px = 30vw */
-    height: 30vw;
-    margin-bottom: 20px;
+    /* height: 30vw; */
     margin: 0 auto;
-    margin-bottom: 20px;
   }
   .service-link-3 {
     max-width: 660px;
+    width: 100%;
     /* 1024px : 660px = 64.45vw */
-    width: 64.45vw;
+    /* width: 64.45vw; */
 
     /* 1024px : 310px = 30vw */
-    height: 30vw;
+    /* height: 30vw; */
     margin: 0 auto;
   }
 }
 @media screen and (max-width: 640px) {
+  .service h2 {
+    font-size: 30px;
+  }
+  .service-left,
+  .service-right-top,
+  .service-right-bottom {
+    margin-bottom: 10px;
+    height: 42.96vw;
+    display: flex;
+    align-items: flex-end;
+  }
   .service-link-1 {
     width: 100%;
-    height: 275px;
+    height: auto;
   }
   .service-link-2 {
     width: 100%;
-    height: 275px;
+    /* height: 275px; */
   }
   .service-link-3 {
     width: 100%;
-    height: 275px;
+    /* height: 275px; */
+  }
+  .service-left-textWrap,
+  .service-right-top-textWrap,
+  .service-right-bottom-textWrap {
+    justify-content: center;
+  }
+  .serviceName {
+    font-size: 20px;
   }
 }
 /* 정보 */
@@ -718,7 +791,7 @@ html.active {
   margin-bottom: 45px;
   font-size: 28px;
   font-weight: 500;
-  line-height: 40px;
+  line-height: 1.35;
 }
 .info-right-title span {
   font-weight: 700;
@@ -761,6 +834,10 @@ html.active {
   .info-contents {
     justify-content: center;
     flex-wrap: wrap;
+    height: auto;
+  }
+  .info-right-content a {
+    margin: 50px auto;
   }
   .info-left {
     width: 100%;
@@ -778,6 +855,14 @@ html.active {
     font-size: 34px;
   }
 }
+@media screen and (max-width: 680px) {
+  .info-left {
+    font-size: 30px;
+  }
+  .info-right-title {
+    font-size: 22px;
+  }
+}
 /* 서비스 카테고리 */
 .category {
   position: relative;
@@ -792,15 +877,68 @@ html.active {
   display: block;
   width: 100%;
   height: 100%;
+  padding: 30px;
+  border-right: 1px solid #dadfe6;
+  background-color: #eee;
+  transition: background 0.3s;
+}
+.category-link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 304px;
+  width: 100%;
+  min-height: 100%;
 }
 .clink-1 {
-  background: hotpink;
+}
+.clink-1::after {
+  /* right: -30px;
+  bottom: 10px; */
+  background: url("../images/main_banner_figure1.png") no-repeat bottom right;
+  background-size: contain;
 }
 .clink-2 {
-  background: yellowgreen;
+}
+.clink-2::after {
+  /* right: -30px;
+  bottom: 10px; */
+  background: url("../images/main_banner_figure2.png") no-repeat bottom right;
+  background-size: contain;
 }
 .clink-3 {
-  background: yellow;
+}
+.clink-3::after {
+  /* right: -30px;
+  bottom: 10px; */
+  background: url("../images/main_banner_figure3.png") no-repeat bottom right;
+  background-size: contain;
+}
+
+.category-link-title {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
+}
+.category-link-content {
+  position: relative;
+  font-size: 17px;
+  line-height: 1.5;
+  margin-bottom: 45px;
+  z-index: 1;
+}
+.category-link-more {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 90px;
+  height: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  border-bottom: 2px solid #222;
+  z-index: 1;
 }
 
 .category-pop {
@@ -818,9 +956,43 @@ html.active {
 .category-pop.active {
   display: none !important;
 }
+@media screen and (max-width: 1280px) {
+  .category-link::after {
+    width: 70%;
+  }
+  .category-link-title {
+    font-size: 24px;
+  }
+  .category-link-content {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .clink-1:hover {
+    background: #3891b2;
+  }
+  .clink-2:hover {
+    background: #db574f;
+  }
+  .clink-3:hover {
+    background: #f0b23a;
+  }
+}
 @media screen and (max-width: 1024px) {
   .category-pop {
     display: flex;
+  }
+}
+@media screen and (max-width: 640px) {
+  .category {
+    height: auto;
+  }
+  .category-link {
+    min-height: 300px;
+    padding: 25px 20px;
+  }
+  .category-link::after {
+    width: 50%;
   }
 }
 
@@ -828,8 +1000,46 @@ html.active {
 .footer {
   position: relative;
   display: block;
-  padding: 40px 0;
+  padding: 60px 0;
   text-align: center;
   background: #222;
   color: #666;
+}
+.footerContent {
+  padding: 60px auto;
+  background-color: #222;
+  /* text-align: center; */
+}
+.footerInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.footerInfo-item {
+  position: relative;
+  font-size: 15px;
+  padding: 0 18px;
+}
+.footerService {
+  font-size: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.telLink {
+  color: #666;
+}
+.telLink:hover {
+  text-decoration: underline;
+}
+.copy {
+  font-size: 14px;
+  color: #444444;
+  margin-top: 50px;
+}
+@media screen and (max-width: 920px) {
+  /* .footer .inner {
+    padding: 0;
+  } */
 }
