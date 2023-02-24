@@ -1,281 +1,240 @@
 // 이미지 및 리소스 로드 후 코드실행
-window.onload = function () {
-  // AOS 셋팅
+window.onload = () => {
+  // aos 라이브러리
   AOS.init();
 
-  // Waypoint 활용
-  let goTop = document.querySelector(".gotop");
-
-  //  스크롤의 위치에 따른 div 비교대상
-  let visual = document.querySelector(".service");
-  let footer = document.querySelector(".footer");
+  // waypoint 활용
+  let $goTop = document.querySelector(".gotop");
+  // 스크롤 위치에 따른 div 비교대상
+  let $visual = document.querySelector(".service");
+  let $footer = document.querySelector(".footer-copyright");
 
   new Waypoint({
-    element: visual,
+    element: $visual,
     handler: function (dir) {
-      // dir 의 값에 따라 처리
-      if (dir === "down") {
-        console.log(dir);
-        goTop.classList.add("active");
+      // dir의 값에 따라 처리
+      if (dir == "down") {
+        $goTop.classList.add("active");
       } else {
-        goTop.classList.remove("active");
+        $goTop.classList.remove("active");
       }
     },
-    // 해당 div 의 화면상에 얼마나 보이는가?
+    // 해당 div의 화면 상에 얼마나 보이는가
     offset: "50%",
   });
+
   new Waypoint({
-    element: footer,
+    element: $footer,
     handler: function (dir) {
-      // dir 의 값에 따라 처리
-      if (dir === "down") {
-        goTop.classList.add("footer-bottom");
+      if (dir == "down") {
+        $goTop.classList.add("footerbottom");
       } else {
-        goTop.classList.remove("footer-bottom");
+        $goTop.classList.remove("footerbottom");
       }
     },
-
     offset: "100%",
   });
 
-  let htmlTag = document.querySelector("html");
+  $goTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // 코드 실행 작성
+  let $htmlTag = document.querySelector("html");
   // 모바일 메뉴 버튼 처리
   // 1. 모바일 버튼을 찾아서 저장한다.
-  let mbBt = document.querySelector(".mb-bt");
+  let $mbBt = document.querySelector(".mb-bt");
   // 2. 모바일 메뉴를 찾아서 저장한다.
-  let mbNav = document.querySelector(".mb-nav");
+  let $mbNav = document.querySelector(".mb-nav");
   // 3. 로고를 찾아서 저장한다.
-  let logo = document.querySelector(".logo");
-  // 4. header 를 찾아서 저장한다.
-  let header = document.querySelector(".header");
+  let $logo = document.querySelector(".logo");
+  // 4. 헤더를 찾아서 저장한다.
+  let $header = document.querySelector(".header");
   // 5. gnb > li > a
-  let gnbA = document.querySelectorAll(".gnb>li>a");
-  // 6. mb-bt span
-  let mbBtSpan = document.querySelectorAll(".mb-bt span");
+  let $gnbA = document.querySelectorAll(".gnb > li > a");
+  // 6. 모바일 버튼의 span 저장
+  let $mbBtSpan = $mbBt.querySelectorAll("span");
 
-  // 4. 모바일 버튼 클릭을 하면
-  mbBt.addEventListener("click", function () {
-    // html scroll 없애기
-    htmlTag.classList.toggle("active");
-    //  로고에 active 클래스를 추가한다.
-    logo.classList.toggle("active-blue");
-    //  모바일 버튼에 active 클래스를 추가한다.
-    mbBt.classList.toggle("active");
-    // 모바일 메뉴에 active 클래스를 추가한다.
-    mbNav.classList.toggle("active");
-    mbBtSpan.forEach((item) => {
-      item.classList.add("active");
+  // 클릭 시 active 클래스를 추가
+  $mbBt.addEventListener("click", () => {
+    $htmlTag.classList.toggle("active");
+    $mbBt.classList.toggle("active");
+    $logo.classList.toggle("active-blue");
+    $mbNav.classList.toggle("active");
+    $mbBtSpan.forEach((item) => {
+      item.classList.toggle(
+        "active",
+        $header.classList.contains("active") ||
+          $mbBt.classList.contains("active")
+      );
     });
   });
+
   // 화면 리사이징 처리
-  window.addEventListener("resize", function () {
-    // window 의 화면 안쪽 너비 체크
-    // console.log(window.innerWidth);
-    let wW = window.innerWidth;
-    if (wW > 1080) {
-      // html scroll 없애기
-      htmlTag.classList.remove("active");
+  window.addEventListener("resize", () => {
+    // window 화면 안쪽 너비 체크
+    let width = window.innerWidth;
+    if (width > 1080) {
+      $htmlTag.classList.remove("active");
+      $mbBt.classList.remove("active");
+      $mbNav.classList.remove("active");
 
-      //  모바일 버튼에 active 클래스를 제거한다.
-      mbBt.classList.remove("active");
-      // 모바일 메뉴에 active 클래스를 제거한다.
-      mbNav.classList.remove("active");
-
-      // 스크롤이 되었는지 안되었는지에 따라서 처리 분리
+      // 스크롤이 되었는지 안 되었는지에 따라 분리 처리
       let scT = window.document.documentElement.scrollTop;
       if (scT > 100) {
-        // 스크롤이 되었으므로
-        mbBtSpan.forEach((item) => {
+        $mbBtSpan.forEach((item) => {
           item.classList.add("active");
         });
       } else {
-        // 모바일 버튼 아이콘 색상 짙게(#fff)
-        mbBtSpan.forEach((item) => {
+        $mbBtSpan.forEach((item) => {
           item.classList.remove("active");
         });
       }
-
-      logo.classList.remove("active-blue");
+      $logo.classList.remove("active-blue");
     }
   });
+
   // window 스크롤 처리
-  window.addEventListener("scroll", function () {
-    // 스크롤바가 스크롤이 된 픽셀 값을 파악
+  window.addEventListener("scroll", () => {
     let scT = window.document.documentElement.scrollTop;
     // 조금이라도 스크롤을 했다면 처리한다.
     if (scT > 100) {
-      header.classList.add("active");
-      logo.classList.add("active");
-      gnbA.forEach((item) => {
+      $header.classList.add("active");
+      $logo.classList.add("active");
+      $gnbA.forEach((item) => {
         item.classList.add("active");
       });
-      mbBtSpan.forEach((item) => {
+      $mbBtSpan.forEach((item) => {
         item.classList.add("active");
       });
     } else {
-      header.classList.remove("active");
-      logo.classList.remove("active");
-      gnbA.forEach((item) => {
+      $header.classList.remove("active");
+      $logo.classList.remove("active");
+      $gnbA.forEach((item) => {
         item.classList.remove("active");
       });
-      mbBtSpan.forEach((item) => {
+      $mbBtSpan.forEach((item) => {
         item.classList.remove("active");
       });
     }
   });
-  // 화면 Reload 시 처리
+
+  // 화면 reload 시 처리
   let scT = window.document.documentElement.scrollTop;
   if (scT > 100) {
-    header.classList.add("active");
-    logo.classList.add("active");
-    gnbA.forEach((item) => {
+    $header.classList.add("active");
+    $logo.classList.add("active");
+    $gnbA.forEach((item) => {
       item.classList.add("active");
     });
-    mbBtSpan.forEach((item) => {
+    $mbBtSpan.forEach((item) => {
       item.classList.add("active");
     });
   }
 
-  // data.json 외부연동
-  // 1. XMLHttpRequest 활용( 반드시 JSON.parse() 실행)
+  // data.json 외부연동 ***
+
+  // 1. XMLHttpRequest 활용
   const xhttp = new XMLHttpRequest();
-  // data.json 이 불러들여졌는지 검사후 완료시 실행
-  xhttp.onreadystatechange = function (e) {
+  // data.json이 불러들여졌는지 검사 후 완료 시 실행
+  xhttp.onreadystatechange = (e) => {
     const req = e.target;
     if (req.readyState === XMLHttpRequest.DONE) {
-      // console.log(req.response);
-      // 아래 구문을 반드시 체크하자.
+      console.log(req.response);
+      // response : 결과값
       const dataArr = JSON.parse(req.response);
-      // console.log(dataArr);
+      console.log(dataArr);
     }
   };
   xhttp.open("GET", "data.json");
-  //xhttp.send();
+  // xhttp.send();
 
-  // 2. fetch 활용 : 아래 구문을 준수하자.
+  // 통신
+  // Network -> Fetch/XHR -> Headers -> Request, status 확인
+  // status code : 200 단위 (정상 실행), 400 단위 (Request 오류), 500 단위 (서버 오류)
+
+  // 2. Fetch 활용 : 아래 구문을 준수하자.
   fetch("data.json")
     .then((res) => res.json())
     .then((data) => {
-      // 데이터를 활용한다.
-      // console.log(data)
-      // 데이터를 외부 변수에 저장한다.
+      // data를 활용한다.
+      // 데이터를 외부 변수에 저장한다. (스코프)
+      // 글로벌 변수에다가 로컬 변수를 담아 내보낸다.
       visualData = data.visual;
-
-      // 데이터 로딩후 데이터 개수 만큼 li 태그를 만든다.
-      // 만들어진 글자를 모아서 swUl 태그 안쪽에 innrHtml 한다.
-      let html = "";
-      let count = 1;
-      visualData.forEach((item) => {
-        html += `<li>${count++}</li>`;
-      });
-      swUl.innerHTML = html;
-      // 자바스크립트가 li를 참조하도록 적용
-      swList = document.querySelectorAll(".swvisual-list li");
-      // li 태그를 클릭해서 슬라이드 이동하기
-      swListShow();
-
-      setTimeout(function () {
-        showVT(visualData[0], 0);
-      }, 20);
-
-      setTimeout(function () {
-        initSwiper();
-      }, 2000);
+      initSwiper();
+      showVT(visualData[0]);
     })
     .catch((err) => {
+      // catch: 실패했을 때
       console.log(err);
     });
 
-  // 비주얼에 활용할 데이터
   let visualData;
+
   // 화면에 데이터를 출력하는 함수
   const swTitle = document.querySelector(".swvisual-title");
   const swTxt = document.querySelector(".swvisual-txt");
   const swLink = document.querySelector(".swvisual-link");
   const swUl = document.querySelector(".swvisual-list");
-  // li 는 동적(데이터 로딩 후)으로 만들어야 한다.
-  // const 는 내용을 변경하지 못한다.
-  let swList;
 
-  // 타이틀 내용 보여주기
-  function showVT(_data, _idx) {
-    // console.log(_data);
-    swTitle.innerHTML = _data.title;
-    swTxt.innerHTML = _data.txt;
-    if (_data.link === "no") {
-      swLink.classList.add("active");
-    } else {
-      swLink.classList.remove("active");
-    }
-    // 라인 모션 실행
-    changeBar(_idx);
-  }
-  // 포커스 라인 애니메이션 실행함수
-  function changeBar(_idx) {
-    // item : 각각의 li 를 의미
-    // index : 순서번호
-    swList.forEach((item, index) => {
-      item.classList.toggle("active", _idx === index);
-    });
-  }
-  // li 를 클릭시 슬라이드 변경함수
-  function swListShow() {
-    swList.forEach((item, index) => {
-      // 클릭시 슬라이드 변경
-      item.addEventListener("click", function () {
-        // swVisual 슬라이드를 변경 (API 참조)
-        // swVisual.slideTo()
-        // swVisual.slideToLoop(번호, 속도, 효과)
-        swVisual.slideToLoop(index, 500, false);
-      });
-    });
+  // title 내용 보여주기
+  function showVT(data) {
+    swTitle.innerHTML = data.title;
+    swTxt.innerHTML = data.txt;
+    swLink.classList.toggle("active", data.link === "nothing");
   }
 
-  // 비주얼 슬라이드
   let swVisual = null;
   function initSwiper() {
     swVisual = new Swiper(".swvisual", {
       effect: "fade",
       loop: true,
-      speed: 1500,
+      speed: 2000,
       autoplay: {
-        delay: 1000,
+        delay: 2000,
         disableOnInteraction: false,
       },
       navigation: {
         prevEl: ".swvisual-prev",
         nextEl: ".swvisual-next",
       },
+      pagination: {
+        el: ".swiper-pagination",
+        bulletClass: "test",
+        bulletActiveClass: "active",
+        clickable: true,
+        renderBullet: function (index, className) {
+          return `<li class="${className}">${index + 1}</li>`;
+        },
+      },
     });
+    setTimeout(function () {
+      swVisual.slideToLoop(0, 50, false);
+    }, 100);
 
-    // swVisual 슬라이드가 변경될 때마다 하고 싶은 일 진행
-    swVisual.on("slideChange", function () {
-      // console.log("진짜 html 태그의 순서", swVisual.realIndex);
-      // console.log("모션이 되는 순서", swVisual.activeIndex);
-      // 텍스트를 수정한다.
-      showVT(visualData[swVisual.realIndex], swVisual.realIndex);
+    // 슬라이드가 변경될 때마다 하고 싶은 일 진행
+    swVisual.on("slideChange", () => {
+      showVT(visualData[swVisual.realIndex]);
     });
   }
+  // visual slide
 
   // 카테고리 슬라이드
   new Swiper(".swcategory", {
-    loop: true,
     slidesPerView: 1,
     breakpoints: {
       480: {
         slidesPerView: 2,
-        spaceBetween: 0,
       },
       1024: {
         slidesPerView: 3,
-        spaceBetween: 0,
       },
     },
   });
 
   // 안내창 기능
-  let categoryPop = document.querySelector(".category-pop");
-  categoryPop.addEventListener("click", function () {
-    categoryPop.classList.add("active");
+  let $categoryPop = document.querySelector(".category-pop");
+  $categoryPop.addEventListener("click", () => {
+    $categoryPop.classList.add("active");
   });
 };
